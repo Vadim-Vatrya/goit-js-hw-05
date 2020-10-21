@@ -1,45 +1,52 @@
-const findBestEmployee = function (employees) {
-  ("use strict");
+// Использование методов класса
+// Напиши класс Storage, который будет создавать объекты для управления складом товаров.При вызове будет получать один аргумент - начальный массив товаров,
+// и записывать его в свойство items.
 
-  // Write code under this line
-  const keys = Object.keys(employees);
-  const values = Object.values(employees);
+// Добавь методы класса:
 
-  let maxTasks = 0;
-  let best = "";
+// getItems() - возвращает массив текущих товаров
+// addItem(item) - получает новый товар и добавляет его к текущим
+// removeItem(item) - получает товар и, если он есть, удаляет его из текущих
 
-  for (const key of keys) {
-    if (employees[key] > maxTasks) {
-      maxTasks = employees[key];
-      best = key;
-    }
-  }
+// Write code under this line
+  
 
-  return best;
-};
+// console.log(typeof Storage);
+// 'function'
 
-// Объекты и ожидаемый результат
-const developers = {
-  ann: 29,
-  david: 35,
-  helen: 1,
-  lorence: 99,
-};
-console.log(findBestEmployee(developers));
-// 'lorence'
+const goods = [
+  'Нанитоиды',
+  'Пролонгер',
+  'Железные жупи',
+  'Антигравитатор'
+];
 
-const supports = {
-  poly: 12,
-  mango: 17,
-  ajax: 4,
-};
-console.log(findBestEmployee(supports));
-// 'mango'
+// const storage = new Storage(goods);
 
-const sellers = {
-  lux: 147,
-  david: 21,
-  kiwi: 19,
-  chelsy: 38,
-};
-console.log(findBestEmployee(sellers));
+// console.log(storage.getItems());
+/* [
+  'Нанитоиды',
+  'Пролонгер',
+  'Железные жупи',
+  'Антигравитатор'
+] */
+
+// storage.addItem('Дроид');
+// console.log(storage.getItems());
+/* [
+  'Нанитоиды',
+  'Пролонгер',
+  'Железные жупи',
+  'Антигравитатор',
+  'Дроид'
+] */
+
+// storage.removeItem('Пролонгер');
+// console.log(storage.getItems());
+/* [
+  'Нанитоиды',
+  'Железные жупи',
+  'Антигравитатор',
+  'Дроид'
+] */
+
