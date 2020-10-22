@@ -1,5 +1,5 @@
 // Использование методов класса
-// Напиши класс Storage, который будет создавать объекты для управления складом товаров.При вызове будет получать один аргумент - начальный массив товаров,
+// Напиши класс Storage, который будет создавать объекты для управления складом товаров. При вызове будет получать один аргумент - начальный массив товаров,
 // и записывать его в свойство items.
 
 // Добавь методы класса:
@@ -9,9 +9,28 @@
 // removeItem(item) - получает товар и, если он есть, удаляет его из текущих
 
 // Write code under this line
-  
+class Storage {
+  constructor(items) {
+    this.items = items;
+  }
 
-// console.log(typeof Storage);
+  getItems() { 
+    return (this.items);
+  }
+
+  addItem(item) {
+    return this.items.push(item);
+  }
+
+  removeItem(item) {
+     
+      if (this.items.includes(item)) { 
+        this.items.splice(this.items.indexOf(item),1);
+    }
+  }
+}
+
+console.log(typeof Storage);
 // 'function'
 
 const goods = [
@@ -21,9 +40,9 @@ const goods = [
   'Антигравитатор'
 ];
 
-// const storage = new Storage(goods);
+const storage = new Storage(goods);
 
-// console.log(storage.getItems());
+console.log(storage.getItems());
 /* [
   'Нанитоиды',
   'Пролонгер',
@@ -31,8 +50,8 @@ const goods = [
   'Антигравитатор'
 ] */
 
-// storage.addItem('Дроид');
-// console.log(storage.getItems());
+storage.addItem('Дроид');
+console.log(storage.getItems());
 /* [
   'Нанитоиды',
   'Пролонгер',
@@ -41,8 +60,8 @@ const goods = [
   'Дроид'
 ] */
 
-// storage.removeItem('Пролонгер');
-// console.log(storage.getItems());
+storage.removeItem('Пролонгер');
+console.log(storage.getItems());
 /* [
   'Нанитоиды',
   'Железные жупи',
