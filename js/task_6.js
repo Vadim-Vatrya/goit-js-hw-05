@@ -1,43 +1,95 @@
-// Суммирование значений свойства из массива объектов
-// Напиши функцию calculateTotalPrice(allProdcuts, productName), которая получает массив объектов и имя продукта(значение свойства name).
-// Возвращает общую стоимость продукта(цена умноженная на количество).
 
-// Вызовы функции для проверки работоспособности твоей реализации.
+/*
+ * Наследование
+ *  - extends
+ *  - super()
+ */
 
-function calculateTotalPrice(allProdcuts, productName) {
-  "use strict";
-  //   console.log(`Список товаров`, allProdcuts);
-  let productPrice = 0;
-
-  for (const product of allProdcuts) {
-    console.log(product);
-
-    if (product[`name`] === productName) {
-      productPrice += product[`price`] * product[`quantity`];
+class Hero {
+    constructor({ name = 'hero', xp = 0 } = {}) {
+        this.name = name;
+        this.xp = xp;
     }
-  }
-  return productPrice;
+
+    gainXp(amount) {
+        console.log(`${this.name} получает ${amount} опыта`);
+        this.xp += amount;
+    }
 }
 
-// Объекты и ожидаемый результат
-const products = [
-  { name: "Радар", price: 1300, quantity: 4 },
-  { name: "Радар", price: 1280, quantity: 2 },
-  { name: "Радар", price: 1320, quantity: 1 },
-  { name: "Сканер", price: 2700, quantity: 1 },
-  { name: "Сканер", price: 2500, quantity: 3 },
-  { name: "Дроид", price: 400, quantity: 7 },
-  { name: "Захват", price: 1200, quantity: 2 },
-];
+class Warrior extends Hero {
+    constructor({ weapon, ...restProps } = {}) {
+        super(restProps);
 
-console.log(calculateTotalPrice(products, "Радар"));
-// 9080
+        this.weapon = weapon;
+    }
 
-console.log(calculateTotalPrice(products, "Сканер"));
-// 10200
+    attack() {
+        console.log(`${this.name} атакует используя ${this.weapon}`);
+    }
+}
 
-console.log(calculateTotalPrice(products, "Захват"));
-// // 2400
+class Berserk extends Warrior {
+    constructor({ warcry, ...restProps } = {}) {
+        super(restProps);
 
-console.log(calculateTotalPrice(products, "Дроид"));
-// 2800
+        this.warcry = warcry;
+    }
+
+    babyRage() {
+        console.log(this.warcry);
+    }
+}
+
+const ajax = new Berserk({
+    name: 'ajax',
+    xp: 500,
+    weapon: 'axe',
+  warcry: 'waaaaaaaah',
+  amount: 20
+});
+
+console.log(ajax);
+
+ajax.babyRage();
+ajax.attack();
+ajax.gainXp(10000);
+console.log(ajax);
+
+class Mage extends Hero {
+    constructor({ spells, ...restProps } = {}) {
+        super(restProps);
+
+        this.spells = spells;
+    }
+
+    cast() {
+        console.log(`${this.name} что-то там кастует 🧙‍♂️`);
+    }
+}
+
+const mango = new Warrior({ name: 'mango', xp: 1000, weapon: 'алебарда' });
+console.log(mango);
+mango.attack();
+mango.gainXp(1000);
+
+const poly = new Mage({ name: 'poly', xp: 500, spells: ['фаербол'] });
+console.log(poly);
+poly.cast();
+poly.gainXp(200);
+
+console.log(
+    'mango.__proto__ === Warrior.prototype ',
+    mango.__proto__ === Warrior.prototype,
+);
+console.log(Object.getPrototypeOf(mango) === Warrior.prototype);
+
+console.log(
+    'Warrior.prototype.__proto__ === Hero.prototype ',
+    Warrior.prototype.__proto__ === Hero.prototype,
+);
+
+console.log(
+  'Hero.prototype.__proto__ === Object.prototype ',
+  Hero.prototype.__proto__ === Object.prototype);
+
